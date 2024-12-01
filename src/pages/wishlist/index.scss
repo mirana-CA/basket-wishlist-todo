@@ -1,0 +1,48 @@
+.cards_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  .card {
+    margin: 20px 0 50px;
+    position: relative;
+    img {
+      height: 300px;
+      object-fit: cover;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      div {
+        .card_title {
+          text-transform: capitalize;
+        }
+        .card_category {
+          font-size: 14px;
+          color: #808080;
+        }
+      }
+    }
+    .card_ending {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .card_price {
+        font-size: 30px;
+        color: #28a745;
+        display: flex;
+        align-items: center;
+      }
+    }
+    .card_heart_icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: red;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+}

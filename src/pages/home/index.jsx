@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./index.scss";
 import { BasketContext } from "../../context/basketContext";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
@@ -9,13 +9,31 @@ const Home = () => {
   const { addToBasket } = useContext(BasketContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const [fav, setFav] = useState(false);
-  const [wishList, setWishList] = useState([]);
-  const addToWishlist = function (item, id) {
-    // setFav(true);
-    setWishList([...wishList, { item, isFav: true }]);
-    console.log(wishList);
+  const [fav, setFav] = useState(<FaRegHeart />);
+  const [wishList, setWishList] = useState(
+    JSON.parse(localStorage.getItem("wishlist")) ?? []
+  );
+
+  const addToWishlist = function (item) {
+    console.log("item", item);
+
+    let myItem = wishList.findIndex((x) => x.id == item.id);
+    console.log("myitem", myItem);
+
+    if (myItem == -1) {
+      setFav(<FaHeart />);
+      setWishList([...wishList, item]);
+      console.log(wishList);
+    } else {
+      setFav(<FaRegHeart />);
+      setWishList(wishList.filter((x) => x.id != item.id));
+      console.log(wishList);
+    }
   };
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishList));
+  }, [wishList]);
 
   fetch("https://api.escuelajs.co/api/v1/products")
     .then((res) => res.json())
@@ -64,9 +82,9 @@ const Home = () => {
                     </div>
                     <div
                       className="card_heart_icon"
-                      onClick={() => addToWishlist(item, item.id)}
+                      onClick={() => addToWishlist(item)}
                     >
-                      {item.isFav ? <FaHeart /> : <FaRegHeart />}
+                      {fav}
                     </div>
                   </div>
                 );
