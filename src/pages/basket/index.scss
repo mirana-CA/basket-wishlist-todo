@@ -1,0 +1,37 @@
+.basket_page {
+  min-height: 60vh;
+  h1 {
+    text-align: center;
+    margin: 50px 0;
+  }
+  .basket_container {
+    margin: 20px auto;
+    max-width: 1200px;
+    table {
+      tbody tr {
+        td img {
+          width: 150px;
+        }
+        .basket_counter {
+          button {
+            border: none;
+            background-color: #fff;
+            margin: 0 10px;
+          }
+        }
+        .removeFromBtn {
+          color: red;
+          cursor: pointer;
+          font-weight: 700;
+        }
+      }
+    }
+    .basket_subtotal {
+      float: right;
+      margin-right: 50px;
+      margin-bottom: 50px;
+      font-size: 30px;
+      text-decoration: underline;
+    }
+  }
+}

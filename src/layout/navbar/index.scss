@@ -1,0 +1,33 @@
+.main_nav {
+  background-color: #f8f9fa;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  .navbar {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .navbar_rs {
+    display: flex;
+    gap: 25px;
+    span svg {
+      font-size: 20px;
+    }
+    span .nav-link {
+      display: flex;
+      sup {
+        background-color: red;
+        border-radius: 50%;
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        display: grid;
+        place-items: center;
+        // margin-left: -10px;
+      }
+    }
+  }
+}
