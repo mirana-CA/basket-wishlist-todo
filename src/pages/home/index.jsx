@@ -2,17 +2,18 @@ import React, { useContext, useState } from "react";
 import "./index.scss";
 import { BasketContext } from "../../context/basketContext";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const { addToBasket } = useContext(BasketContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [fav, setFav] = useState(false);
+  // const [fav, setFav] = useState(false);
   const [wishList, setWishList] = useState([]);
-  const addToWishlist = function (item) {
-    setFav(true);
-    setWishList([...wishList, item]);
+  const addToWishlist = function (item, id) {
+    // setFav(true);
+    setWishList([...wishList, { item, isFav: true }]);
     console.log(wishList);
   };
 
@@ -27,6 +28,9 @@ const Home = () => {
 
   return (
     <div className="mainpage">
+      <Helmet>
+        <title>Products</title>
+      </Helmet>
       {isLoading ? (
         <div className="loader"></div>
       ) : (
@@ -60,9 +64,9 @@ const Home = () => {
                     </div>
                     <div
                       className="card_heart_icon"
-                      onClick={() => addToWishlist(item)}
+                      onClick={() => addToWishlist(item, item.id)}
                     >
-                      {fav ? <FaHeart /> : <FaRegHeart />}
+                      {item.isFav ? <FaHeart /> : <FaRegHeart />}
                     </div>
                   </div>
                 );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useLocal from "../../hooks/localhook/useLocal";
 import "./index.scss";
+import { Helmet } from "react-helmet-async";
 
 const ToDoList = () => {
   let [inp, setInp] = useLocal("inp", "");
@@ -16,7 +17,10 @@ const ToDoList = () => {
   };
   return (
     <div className="todo_page">
-      <h1>ToDoList</h1>
+      <Helmet>
+        <title>To Do List</title>
+      </Helmet>
+      <h1>To Do List</h1>
       <form onSubmit={(e) => addTodo(e)}>
         <input
           type="text"

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./index.scss";
 import { BasketContext } from "../../context/basketContext";
+import { Helmet } from "react-helmet-async";
 
 const Basket = () => {
   const { basket, addToBasket, removeFromBasket, decrease } =
@@ -16,6 +17,9 @@ const Basket = () => {
   // }
   return (
     <div className="basket_page">
+      <Helmet>
+        <title>Basket</title>
+      </Helmet>
       {isLoading ? (
         <div className="loader"></div>
       ) : (
